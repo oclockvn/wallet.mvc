@@ -1,0 +1,173 @@
+.container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header .text-field--theme-light .text-field__label {
+    color: #fff;
+}
+
+.header .text-field.text-field--theme-light:before,
+.header .text-field.text-field--is-focus:before,
+.header .text-field.text-field--is-active:before {
+    border-bottom-color: #fff;
+}
+
+.header > .container {
+    overflow: auto;
+}
+
+.header .text-field:after {
+    background: #f42;
+}
+
+.item {
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    &:hover {
+        background: #eee;
+    }
+}
+
+.item>div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: #888;
+}
+
+.items {
+    padding: 16px 0;
+}
+
+.item__money {
+    // border: 1px solid;
+    width: 200px;
+    text-align: right;
+    // padding-right: 10px;
+}
+
+.item__sign {
+    width: 50px;
+    // border: 1px solid;
+    text-align: right;
+}
+
+.item__date {
+    width: 150px;
+}
+
+.item__check {
+    /* border: 1px solid; */
+    width: 200px;
+}
+
+.action-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+
+    // .toolbar {
+    //     height: 72px;
+    //     padding-top: 16px;
+    //     padding-bottom: 16px;
+    // }
+}
+.body {
+    .toolbar {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.item .checkbox--theme-light .checkbox__label {
+    color: #888;
+}
+
+.item:hover {
+    div, .checkbox--theme-light .checkbox__label {
+        color: #000;
+    }
+    
+}
+
+.add-field {
+    /* height: 64px; */
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    padding: 8px 16px;
+    /* margin: 16px; */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+}
+
+.add-field input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+}
+
+.add-field .mdi {
+    color: #fff;
+}
+
+.add-field {    
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    padding: 8px 16px;   
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+}
+
+.add-field input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+}
+
+.add-field .mdi {
+    color: #fff;
+}
+
+.add-field input {
+    flex: 1;
+}
+
+.add-field input {
+    padding: 0 10px;
+    font-size: 13px;
+}
+
+.add-field {
+    margin: 12px 0;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #eee;
+  opacity: .8;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #eee;
+  opacity: .8;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #eee;
+  opacity: .8;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #eee;
+  opacity: .8;
+}

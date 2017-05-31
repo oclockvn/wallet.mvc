@@ -1,0 +1,67 @@
+<header class="bgc-light-blue-500 header z-depth1">
+    <div class="container">
+        <!--<lx-text-field lxx-label="note + $00.00" lx-allow-clear="true" class="tc-white">
+            <input type="text" ng-model="$ctrl.textFields.floating.company" class="tc-white" placeholder="note + $00.00">
+        </lx-text-field>-->
+        <div class="add-field">
+            <!--<i class="mdi mdi-add"></i>-->
+            <lx-icon lx-id="plus" lx-size="xs" lx-color="white" lx-type="flat"></lx-icon>
+            <input type="text" ng-model="$ctrl.textFields.floating.company" class="tc-white" placeholder="note + $00.00">
+        </div>
+    </div>
+</header>
+<div class="action-bar bgc-blue-500 z-depth1 visuallyhidden">
+    <div class="container">
+        <div class="toolbar has-divider+has-divider--dark">
+            <div class="toolbar__left">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon">
+                    <i class="mdi mdi-close"></i>
+                </lx-button>
+            </div>
+            <div class="toolbar__label pl">
+                <span class="tc-white">2 selected item(s)</span>
+            </div>
+            <div class="toolbar__right">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon">
+                    <i class="mdi mdi-delete"></i>
+                </lx-button>
+                <lx-button lx-size="l" lx-color="white" lx-type="icon">
+                    <i class="mdi mdi-check"></i>
+                </lx-button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mv++">
+    <div class="card wallet">        
+        <div class="body">
+            <div class="toolbar has-divider has-divider--dark">
+                <div class="toolbar__label">
+                    <span>Today 31/5/2017</span>
+                </div>
+                <div class="toolbar__right">
+                    <lx-switch ng-model="$ctrl.switches.basic.checked"></lx-switch>                    
+                </div>
+            </div>
+            
+            <div class="items">
+                <div class="item" ng-repeat="i in $ctrl.items">
+                    <div class="item__check">
+                        <lx-checkbox ng-model="vm.checkboxes.basic.checked" lx-color="blue">31/5/2017</lx-checkbox>
+                    </div>                    
+                    <div class="item__note">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam deleniti, quos, tempore laboriosam atque dolores
+                        fugiat
+                    </div>
+                    <div class="item__money">
+                        <span>$10,000</span>
+                    </div>
+                    <div class="item__sign">
+                        <i class="icon mdi mdi-plus icon--xs icon--green icon--circled" ng-if="i % 2 == 0"></i>
+                        <i class="icon mdi mdi-minus icon--xs icon--red icon--circled" ng-if="i % 2 != 0"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

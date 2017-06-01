@@ -1,6 +1,6 @@
 (function () {
 
-    function walletController($scope, $timeout) {
+    function walletController($scope, $timeout, walletService) {
         var self = this;
 
         self.$onInit = function () {
@@ -12,18 +12,19 @@
             };
             self.totalMoney = 0;
 
-            for (var i = 0; i < 10; i++) {
-                var sign = i % 2 === 0 ? 1 : -1;
-                self.items.push({
-                    id: i,
-                    money: i * Math.random() * 100000 * sign,
-                    time: new Date(),
-                    note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam deleniti, quos, tempore laboriosam atque dolores",
-                    done: false,
-                    checked: false,
-                    active: true
-                });
-            } 
+            // for (var i = 0; i < 10; i++) {
+            //     var sign = i % 2 === 0 ? 1 : -1;
+            //     self.items.push({
+            //         id: i,
+            //         money: i * Math.random() * 100000 * sign,
+            //         time: new Date(),
+            //         note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam deleniti, quos, tempore laboriosam atque dolores",
+            //         done: false,
+            //         checked: false,
+            //         active: true
+            //     });
+            // } 
+            self.items = walletService.getWallet();
 
             calculateMoney();     
             $timeout(function(){
@@ -49,16 +50,23 @@
                 //     note = note.substr(1, note.length);
                 // }
 
-                self.items.unshift({
+                self.settings.showLoading = true;
+
+                var item = {
                     checked: false,
                     time: new Date().getTime(),
                     note: note,
                     money: money,
                     done: false,
                     active: true
-                });
+                };
+
+                walletService.addItem(item); // .then(success, fail);
+                self.items.unshift(item);
 
                 self.addField = '';
+
+                hideLoading();
             }
         };
 
@@ -136,11 +144,17 @@
                 return total + item.money;
             }, 0);
         }
+
+        function hideLoading() {
+            $timeout(function(){
+                self.settings.showLoading = false;
+            }, 1000);
+        }
     }
 
     angular.module("app")
         .component("wallet", {
             templateUrl: "app/components/wallet/wallet.template.html",
-            controller: ["$scope", "$timeout", walletController]
+            controller: ["$scope", "$timeout", "walletService", walletController]
         });
 })();

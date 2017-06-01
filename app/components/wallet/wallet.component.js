@@ -4,7 +4,17 @@
         var self = this;
 
         self.$onInit = function () {
-            self.items = [1,2,3,4,5,6,7,8];
+            self.items = [];
+            for (var i = 0; i < 10; i++) {
+                var sign = i % 2 === 0 ? 1 : -1;
+                self.items.push({
+                    id: i,
+                    money: i * Math.random() * 100000 * sign,
+                    date: new Date(),
+                    note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam deleniti, quos, tempore laboriosam atque dolores",
+                    done: false        
+                });
+            }
         };
     }
     angular.module("app")

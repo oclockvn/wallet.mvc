@@ -44,22 +44,7 @@
             </div>
             
             <div class="items">
-                <div class="item" ng-repeat="i in $ctrl.items">
-                    <div class="item__check">
-                        <lx-checkbox ng-model="vm.checkboxes.basic.checked" lx-color="blue">31/5/2017</lx-checkbox>
-                    </div>                    
-                    <div class="item__note">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam deleniti, quos, tempore laboriosam atque dolores
-                        fugiat
-                    </div>
-                    <div class="item__money">
-                        <span>$10,000</span>
-                    </div>
-                    <div class="item__sign">
-                        <i class="icon mdi mdi-plus icon--xs icon--green icon--circled" ng-if="i % 2 == 0"></i>
-                        <i class="icon mdi mdi-minus icon--xs icon--red icon--circled" ng-if="i % 2 != 0"></i>
-                    </div>
-                </div>
+                <item ng-repeat="i in $ctrl.items" data="i" />
             </div>
         </div>
     </div>

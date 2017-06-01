@@ -64,10 +64,8 @@
             self.checkedItems.length = 0;
         };
 
-        self.toggleShowDone = function() {
-            // self.settings.showDone = !self.settings.showDone;
-            var state = self.settings.showDone;
-            // self.settings.showDone = nextState;
+        self.toggleShowDone = function() {            
+            var state = self.settings.showDone;            
             var doneItems = _.filter(self.items, function(i) {
                 return i.done;
             });

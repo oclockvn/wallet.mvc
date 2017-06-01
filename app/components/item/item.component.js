@@ -2,6 +2,10 @@
 
     function itemController(scope) {
         var self = this;
+
+        self.UnDone = function() {
+            self.data.done = false;
+        };
     }
 
     angular.module("app")

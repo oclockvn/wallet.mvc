@@ -1,13 +1,13 @@
 (function() {
 
-    function itemController() {
+    function itemController(scope) {
         var self = this;
     }
 
     angular.module("app")
         .component("item", {
             templateUrl: "app/components/item/item.template.html",
-            controller: [itemController],
+            controller: ['$scope', itemController],
             parent: "^^wallet",
             bindings: {
                 data: "<",

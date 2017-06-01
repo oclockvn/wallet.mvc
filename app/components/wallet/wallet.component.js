@@ -6,6 +6,9 @@
         self.$onInit = function () {
             self.items = [];
             self.checkedItems = [];
+            self.settings = {
+                showDone: true
+            };
 
             for (var i = 0; i < 10; i++) {
                 var sign = i % 2 === 0 ? 1 : -1;
@@ -15,7 +18,8 @@
                     date: new Date(),
                     note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam deleniti, quos, tempore laboriosam atque dolores",
                     done: false,
-                    checked: false
+                    checked: false,
+                    active: true
                 });
             }
         };
@@ -43,6 +47,7 @@
             });
 
             self.checkedItems.length = 0;
+            self.toggleShowDone();
         };
 
         self.removeItems = function() {
@@ -57,6 +62,21 @@
             });
 
             self.checkedItems.length = 0;
+        };
+
+        self.toggleShowDone = function() {
+            // self.settings.showDone = !self.settings.showDone;
+            var state = self.settings.showDone;
+            // self.settings.showDone = nextState;
+            var doneItems = _.filter(self.items, function(i) {
+                return i.done;
+            });
+
+            if (doneItems.length > 0) {
+                _.each(doneItems, function(item) {
+                    item.active = state;
+                });
+            }
         };
     }
     angular.module("app")

@@ -1,13 +1,14 @@
 (function () {
 
-    function walletController(scope) {
+    function walletController($scope, $timeout) {
         var self = this;
 
         self.$onInit = function () {
             self.items = [];
             self.checkedItems = [];
             self.settings = {
-                showDone: true
+                showDone: true,
+                showLoading: true
             };
             self.totalMoney = 0;
 
@@ -24,7 +25,10 @@
                 });
             } 
 
-            calculateMoney();           
+            calculateMoney();     
+            $timeout(function(){
+                self.settings.showLoading = false;
+            }, 1000);
         };
 
         self.addFieldOnKeyup = function($event) {
@@ -137,6 +141,6 @@
     angular.module("app")
         .component("wallet", {
             templateUrl: "app/components/wallet/wallet.template.html",
-            controller: ["$scope", walletController]
+            controller: ["$scope", "$timeout", walletController]
         });
 })();

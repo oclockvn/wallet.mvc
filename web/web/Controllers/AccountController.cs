@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using web.Models;
+using web.Entities;
 
 namespace web.Controllers
 {
@@ -175,13 +176,13 @@ namespace web.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(int? userId, string code)
         {
             if (userId == null || code == null)
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            var result = await UserManager.ConfirmEmailAsync(userId.Value, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
@@ -288,7 +289,7 @@ namespace web.Controllers
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null)
+            if (userId == 0)
             {
                 return View("Error");
             }

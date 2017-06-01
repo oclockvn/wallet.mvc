@@ -11,11 +11,21 @@
 .header .text-field.text-field--is-active:before {
   border-bottom-color: #fff; }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; }
+
 .header > .container {
   overflow: auto; }
 
 .header .text-field:after {
   background: #f42; }
+
+.container.wallet-container {
+  margin: 100px auto 50px; }
 
 .item {
   /* border: 1px solid; */
@@ -63,7 +73,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2; }
+  z-index: 20; }
 
 .body .toolbar {
   padding-left: 20px;
@@ -144,5 +154,12 @@
 
 .total-money {
   font-weight: 700; }
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30; }
 
 /*# sourceMappingURL=style.css.map */

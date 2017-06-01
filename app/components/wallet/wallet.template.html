@@ -1,4 +1,7 @@
-<lx-progress lx-type="linear" lx-color="red" ng-if="$ctrl.settings.showLoading"></lx-progress>
+<div class="loading" ng-if="$ctrl.settings.showLoading">
+    <lx-progress lx-type="linear" lx-color="red"></lx-progress>
+</div>
+
 <header class="bgc-light-blue-500 header z-depth1">
     <div class="container">        
         <div class="add-field">            
@@ -30,7 +33,7 @@
     </div>
 </div>
 
-<div class="container mv++">
+<div class="container wallet-container">
     <div class="card wallet">        
         <div class="body">
             <div class="toolbar has-divider has-divider--dark ph">

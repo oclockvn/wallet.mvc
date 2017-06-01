@@ -3,32 +3,21 @@
   margin-left: auto;
   margin-right: auto; }
 
-.header .text-field--theme-light .text-field__label {
-  color: #fff; }
-
-.header .text-field.text-field--theme-light:before,
-.header .text-field.text-field--is-focus:before,
-.header .text-field.text-field--is-active:before {
-  border-bottom-color: #fff; }
-
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10; }
+  .header > .container {
+    overflow: auto; }
+  .header .text-field:after {
+    background: #f42; }
 
-.header > .container {
-  overflow: auto; }
-
-.header .text-field:after {
-  background: #f42; }
-
-.container.wallet-container {
+.wallet-container {
   margin: 100px auto 50px; }
 
 .item {
-  /* border: 1px solid; */
   display: flex;
   align-items: center;
   padding: 10px 20px;
@@ -37,36 +26,35 @@
     background: #eee; }
   .item.done, .item.checked {
     background: #eee; }
-  .item.done div, .item.done span {
+  .item.done div,
+  .item.done span {
     text-decoration: line-through; }
-
-.item > div {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  color: #888; }
+  .item > div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: #888; }
+  .item .item__money {
+    width: 200px;
+    text-align: right; }
+  .item .item__sign {
+    width: 50px;
+    text-align: right; }
+  .item .item__date {
+    width: 150px; }
+  .item .item__note {
+    flex: 1; }
+  .item .item__check {
+    width: 150px; }
+  .item .checkbox--theme-light .checkbox__label {
+    color: #888; }
+  .item:not(.done):hover div,
+  .item:not(.done):hover .checkbox--theme-light .checkbox__label {
+    color: #000; }
 
 .items {
   padding: 16px 0; }
-
-.item__money {
-  width: 200px;
-  text-align: right; }
-
-.item__sign {
-  width: 50px;
-  text-align: right; }
-
-.item__date {
-  width: 150px; }
-
-.item__note {
-  flex: 1; }
-
-.item__check {
-  /* border: 1px solid; */
-  width: 150px; }
 
 .action-bar {
   position: fixed;
@@ -74,83 +62,32 @@
   left: 0;
   right: 0;
   z-index: 20; }
+  .action-bar .toolbar {
+    height: 64px;
+    padding-top: 12px;
+    padding-bottom: 12px; }
 
 .body .toolbar {
   padding-left: 20px;
   padding-right: 20px; }
 
-.item .checkbox--theme-light .checkbox__label {
-  color: #888; }
-
-.item:not(.done):hover div, .item:not(.done):hover .checkbox--theme-light .checkbox__label {
-  color: #000; }
-
-.add-field {
-  /* height: 64px; */
-  /* border: 1px solid; */
-  display: flex;
-  align-items: center;
-  margin: 16px 0;
-  padding: 8px 16px;
-  /* margin: 16px; */
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 2px; }
-
-.add-field input {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #fff; }
-
-.add-field .mdi {
-  color: #fff; }
-
 .add-field {
   display: flex;
   align-items: center;
-  margin: 16px 0;
   padding: 8px 16px;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 2px; }
-
-.add-field input {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #fff; }
-
-.add-field .mdi {
-  color: #fff; }
-
-.add-field input {
-  flex: 1; }
-
-.add-field input {
-  padding: 0 10px;
-  font-size: 13px; }
-
-.add-field {
+  border-radius: 2px;
   margin: 12px 0; }
-
-::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
-  color: #eee;
-  opacity: .8; }
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #eee;
-  opacity: .8; }
-
-:-ms-input-placeholder {
-  /* IE 10+ */
-  color: #eee;
-  opacity: .8; }
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: #eee;
-  opacity: .8; }
+  .add-field input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    flex: 1;
+    padding: 0 10px;
+    font-size: 13px; }
+  .add-field .mdi {
+    color: #fff; }
 
 .total-money {
   font-weight: 700; }
@@ -161,5 +98,29 @@
   left: 0;
   right: 0;
   z-index: 30; }
+
+::-webkit-input-placeholder {
+  color: #eee;
+  opacity: .8; }
+
+::-moz-placeholder {
+  color: #eee;
+  opacity: .8; }
+
+:-ms-input-placeholder {
+  color: #eee;
+  opacity: .8; }
+
+:-moz-placeholder {
+  color: #eee;
+  opacity: .8; }
+
+@media screen and (max-width: 640px) {
+  .container {
+    margin-left: 10px;
+    margin-right: 10px; }
+
+  .item__note {
+    display: none; } }
 
 /*# sourceMappingURL=style.css.map */

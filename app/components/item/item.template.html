@@ -7,7 +7,7 @@
         <span>{{$ctrl.data.money | currency}}</span>
     </div>
     <div class="item__sign">
-        <i class="icon mdi mdi-plus icon--xs icon--green icon--circled" ng-if="$ctrl.data.money >= 0"></i>
-        <i class="icon mdi mdi-minus icon--xs icon--red icon--circled" ng-if="$ctrl.data.money < 0"></i>
+        <i class="icon mdi mdi-plus icon--xs icon--{{$ctrl.data.done ? 'grey' : 'green'}} icon--circled" ng-if="$ctrl.data.money >= 0"></i>
+        <i class="icon mdi mdi-minus icon--xs icon--{{$ctrl.data.done ? 'grey' : 'red'}} icon--circled" ng-if="$ctrl.data.money < 0"></i>
     </div>
 </div>

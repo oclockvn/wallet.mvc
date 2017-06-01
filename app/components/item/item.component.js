@@ -10,7 +10,8 @@
             controller: [itemController],
             parent: "^^wallet",
             bindings: {
-                data: "<"
+                data: "<",
+                toggleItem: "&"
             }
         });
 })();

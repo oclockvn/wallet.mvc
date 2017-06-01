@@ -1,30 +1,27 @@
 <header class="bgc-light-blue-500 header z-depth1">
-    <div class="container">
-        <!--<lx-text-field lxx-label="note + $00.00" lx-allow-clear="true" class="tc-white">
-            <input type="text" ng-model="$ctrl.textFields.floating.company" class="tc-white" placeholder="note + $00.00">
-        </lx-text-field>-->
+    <div class="container">        
         <div class="add-field">            
             <lx-icon lx-id="plus" lx-size="xs" lx-color="white" lx-type="flat"></lx-icon>
             <input type="text" ng-model="$ctrl.textFields.floating.company" class="tc-white" placeholder="note + $00.00">
         </div>
     </div>
 </header>
-<div class="action-bar bgc-blue-500 z-depth1 visuallyhidden">
+<div class="action-bar bgc-blue-500 z-depth1" ng-show="$ctrl.checkedItems.length > 0">
     <div class="container">
         <div class="toolbar has-divider+has-divider--dark">
             <div class="toolbar__left">
-                <lx-button lx-size="l" lx-color="white" lx-type="icon">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" ng-click="$ctrl.toggleAll(false)">
                     <i class="mdi mdi-close"></i>
                 </lx-button>
             </div>
             <div class="toolbar__label pl">
-                <span class="tc-white">2 selected item(s)</span>
+                <span class="tc-white">{{$ctrl.checkedItems.length}} selected item(s)</span>
             </div>
             <div class="toolbar__right">
-                <lx-button lx-size="l" lx-color="white" lx-type="icon">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" ng-click="$ctrl.removeItems()">
                     <i class="mdi mdi-delete"></i>
                 </lx-button>
-                <lx-button lx-size="l" lx-color="white" lx-type="icon">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" ng-click="$ctrl.markDone()">
                     <i class="mdi mdi-check"></i>
                 </lx-button>
             </div>
@@ -44,7 +41,7 @@
             </div>
             
             <div class="items">
-                <item ng-repeat="i in $ctrl.items" data="i" />
+                <item ng-repeat="i in $ctrl.items" data="i" toggle-item="$ctrl.toggleItem()" />
             </div>
         </div>
     </div>

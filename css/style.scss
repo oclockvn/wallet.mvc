@@ -29,8 +29,18 @@
     padding: 10px 20px;
     cursor: pointer;
 
-    &:hover {
+    &:hover {        
         background: #eee;
+    }
+
+    &.done, &.checked {
+        background: #eee;
+    }
+
+    &.done {
+        div, span {
+            text-decoration: line-through;
+        }
     }
 }
 
@@ -92,7 +102,7 @@
     color: #888;
 }
 
-.item:hover {
+.item:not(.done):hover {
     div, .checkbox--theme-light .checkbox__label {
         color: #000;
     }

@@ -1,6 +1,6 @@
-<div class="item">
+<div class="item" ng-class="{done: $ctrl.data.done, checked: $ctrl.data.checked}">
     <div class="item__check">
-        <lx-checkbox ng-model="vm.checkboxes.basic.checked" lx-color="blue">{{$ctrl.data.date | date}}</lx-checkbox>
+        <lx-checkbox ng-model="$ctrl.data.checked" ng-disabled="$ctrl.data.done" ng-change="$ctrl.toggleItem()" lx-color="blue">{{$ctrl.data.date | date}}</lx-checkbox>
     </div>
     <div class="item__note">{{$ctrl.data.note}}</div>
     <div class="item__money">

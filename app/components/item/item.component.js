@@ -3,9 +3,9 @@
     function itemController(scope) {
         var self = this;
 
-        self.UnDone = function() {
-            self.data.done = false;
-        };
+        // self.UnDone = function() {
+        //     self.data.done = false;
+        // };
     }
 
     angular.module("app")
@@ -15,7 +15,8 @@
             parent: "^^wallet",
             bindings: {
                 data: "<",
-                toggleItem: "&"
+                toggleItem: "&",
+                unDone: "&"
             }
         });
 })();

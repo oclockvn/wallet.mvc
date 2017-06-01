@@ -73,9 +73,13 @@
     width: 150px;
 }
 
+.item__note {
+    flex: 1;
+}
+
 .item__check {
     /* border: 1px solid; */
-    width: 200px;
+    width: 150px;
 }
 
 .action-bar {
@@ -180,4 +184,8 @@
 :-moz-placeholder { /* Firefox 18- */
   color: #eee;
   opacity: .8;
+}
+
+.total-money {
+    font-weight: 700;
 }

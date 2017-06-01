@@ -1,6 +1,6 @@
 (function () {
 
-    function walletController() {
+    function walletController(scope) {
         var self = this;
 
         self.$onInit = function () {
@@ -9,18 +9,52 @@
             self.settings = {
                 showDone: true
             };
+            self.totalMoney = 0;
 
             for (var i = 0; i < 10; i++) {
                 var sign = i % 2 === 0 ? 1 : -1;
                 self.items.push({
                     id: i,
                     money: i * Math.random() * 100000 * sign,
-                    date: new Date(),
+                    time: new Date(),
                     note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam deleniti, quos, tempore laboriosam atque dolores",
                     done: false,
                     checked: false,
                     active: true
                 });
+            } 
+
+            calculateMoney();           
+        };
+
+        self.addFieldOnKeyup = function($event) {
+            var text = self.addField || '';
+            if (text !== '' && $event.keyCode === 13) {
+
+                if (/^(.{1,255})([+-]\d{1,12})$/g.test(text) === false) {
+                    return;
+                }
+
+                // self.loading = true;
+
+                var matches = /^(.{1,255})([+-]\d{1,12})$/g.exec(text);
+                var note = matches[1].trim();
+                var money = Number(matches[2]);
+
+                // if (note[0] === window.app.start_search) {
+                //     note = note.substr(1, note.length);
+                // }
+
+                self.items.unshift({
+                    checked: false,
+                    time: new Date().getTime(),
+                    note: note,
+                    money: money,
+                    done: false,
+                    active: true
+                });
+
+                self.addField = '';
             }
         };
 
@@ -48,6 +82,13 @@
 
             self.checkedItems.length = 0;
             self.toggleShowDone();
+
+            calculateMoney();
+        };
+
+        self.unDone = function(item) {
+            item.done = false;
+            calculateMoney();
         };
 
         self.removeItems = function() {
@@ -76,10 +117,26 @@
                 });
             }
         };
+
+        function calculateMoney() {
+            var doneItems = _.filter(self.items, function(item) {
+                return item.done;
+            });
+
+            if (doneItems.length === 0) {
+                self.totalMoney = 0;
+                return;
+            }
+
+            self.totalMoney = _.reduce(doneItems, function(total, item) {
+                return total + item.money;
+            }, 0);
+        }
     }
+
     angular.module("app")
         .component("wallet", {
             templateUrl: "app/components/wallet/wallet.template.html",
-            controller: [walletController]
+            controller: ["$scope", walletController]
         });
 })();

@@ -1,7 +1,7 @@
 <div class="item" ng-class="{done: $ctrl.data.done, checked: $ctrl.data.checked}">
     <div class="item__check">
-        <lx-checkbox ng-model="$ctrl.data.checked" ng-disabled="$ctrl.data.done" ng-hide="$ctrl.data.done" ng-change="$ctrl.toggleItem()" lx-color="blue">{{$ctrl.data.date | date}}</lx-checkbox>
-        <lx-button lx-color="blue" lx-type="flat" ng-click="$ctrl.UnDone()" lx-size="xs" ng-show="$ctrl.data.done">
+        <lx-checkbox ng-model="$ctrl.data.checked" ng-disabled="$ctrl.data.done" ng-hide="$ctrl.data.done" ng-change="$ctrl.toggleItem()" lx-color="blue">{{$ctrl.data.time | date}}</lx-checkbox>
+        <lx-button lx-color="blue" lx-type="flat" ng-click="$ctrl.unDone()" lx-size="xs" ng-show="$ctrl.data.done">
             <i class="mdi mdi-arrow-left"></i> UNDONE
         </lx-button>
     </div>

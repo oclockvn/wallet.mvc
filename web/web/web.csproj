@@ -291,9 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Handles\" />
-    <Folder Include="IHandles\" />
-    <Folder Include="IStores\" />
+    <Folder Include="Handlers\" />
     <Folder Include="Stores\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

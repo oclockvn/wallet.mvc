@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MediatR;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace web.Models
@@ -62,7 +63,7 @@ namespace web.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel : INotification
     {
         [Required]
         [EmailAddress]

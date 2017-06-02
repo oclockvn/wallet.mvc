@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
+using System;
 using web.Entities;
+using web.ViewModels;
 
 namespace web
 {
@@ -15,7 +13,16 @@ namespace web
         {
             var option = new MapperConfiguration(config =>
             {
+                config.CreateMap<ItemCreateViewModel, Item>()
+                    .AfterMap((vm, m) =>
+                    {
+                        m.Time = DateTime.Now;
+                        m.Done = false;
+                        m.Checked = false;
+                        m.Active = true;
+                    });
 
+                config.CreateMap<Item, ItemIndexViewModel>();
             });
 
             Factory = option.CreateMapper();

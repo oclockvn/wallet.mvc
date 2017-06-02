@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using web.Models;
 using web.Entities;
+using MediatR;
+using web.ViewModels;
 
 namespace web.Controllers
 {
@@ -18,9 +20,11 @@ namespace web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IMediator mediator;
 
-        public AccountController()
+        public AccountController(IMediator mediator)
         {
+            this.mediator = mediator;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -156,6 +160,8 @@ namespace web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await mediator.Send(new WalletCreateViewModel { UserId = user.Id, Username = user.UserName });
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

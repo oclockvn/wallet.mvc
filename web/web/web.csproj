@@ -56,6 +56,10 @@
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -217,6 +221,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WalletController.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\TEntity.cs" />
@@ -224,11 +229,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ItemCreateHandler.cs" />
+    <Compile Include="Handlers\WalletCreateHandler.cs" />
+    <Compile Include="Handlers\WalletIndexHandler.cs" />
+    <Compile Include="MapperExtensions\ItemMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ItemCreateViewModel.cs" />
+    <Compile Include="ViewModels\ItemIndexViewModel.cs" />
+    <Compile Include="ViewModels\WalletCreateViewModel.cs" />
+    <Compile Include="ViewModels\WalletIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -291,9 +305,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Handlers\" />
+    <Folder Include="Businesses\" />
     <Folder Include="Stores\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Wallet\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

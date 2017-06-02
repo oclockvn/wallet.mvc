@@ -1,6 +1,9 @@
 ﻿using Autofac;
+using Autofac.Features.Variance;
 using Autofac.Integration.Mvc;
+using MediatR;
 using oclockvn.Repository;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using web.Models;
 
@@ -31,6 +34,31 @@ namespace web
             //builder.RegisterType<OrderDetailBusiness>().As<IOrderDetailBusiness>();
             //builder.RegisterType<AccountBusiness>().As<IAccountBusiness>();
             //builder.RegisterType<ReceiptBusiness>().As<IReceiptBusiness>();
+
+            // enables contravariant Resolve() for interfaces with single contravariant ("in") arg
+            builder.RegisterSource(new ContravariantRegistrationSource());
+
+            // mediator itself
+            builder
+              .RegisterType<Mediator>()
+              .As<IMediator>()
+              .InstancePerLifetimeScope();
+
+            // request handlers
+            builder
+              .Register<SingleInstanceFactory>(ctx => {
+                  var c = ctx.Resolve<IComponentContext>();
+                  return t => { object o; return c.TryResolve(t, out o) ? o : null; };
+              })
+              .InstancePerLifetimeScope();
+
+            // notification handlers
+            builder
+              .Register<MultiInstanceFactory>(ctx => {
+                  var c = ctx.Resolve<IComponentContext>();
+                  return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
+              })
+              .InstancePerLifetimeScope();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

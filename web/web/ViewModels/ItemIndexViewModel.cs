@@ -8,7 +8,7 @@ namespace web.ViewModels
         public DateTime time { get; set; }
         public string note { get; set; }
         public decimal money { get; set; }
-        public bool Done { get; set; }
+        public bool done { get; set; }
         public bool active { get; set; }
     }
 }

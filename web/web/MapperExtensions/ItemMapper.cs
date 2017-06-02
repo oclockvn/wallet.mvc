@@ -12,5 +12,10 @@ namespace web.MapperExtensions
 
             return MapperConfig.Factory.Map<ItemCreateViewModel, Item>(viewmodel);
         }
+
+        public static ItemIndexViewModel ToItemIndex(this Item item)
+        {
+            return MapperConfig.Factory.Map<Item, ItemIndexViewModel>(item);
+        }
     }
 }

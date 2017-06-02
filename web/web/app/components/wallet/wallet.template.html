@@ -1,0 +1,54 @@
+<div class="loading" ng-if="$ctrl.settings.showLoading">
+    <lx-progress lx-type="linear" lx-color="red"></lx-progress>
+</div>
+
+<header class="bgc-light-blue-500 header z-depth1">
+    <div class="container">        
+        <div class="add-field">            
+            <lx-icon lx-id="plus" lx-size="xs" lx-color="white" lx-type="flat"></lx-icon>
+            <input type="text" ng-model="$ctrl.addField" ng-keyup="$ctrl.addFieldOnKeyup($event)" class="tc-white" placeholder="note + $00.00">
+        </div>
+    </div>
+</header>
+<div class="action-bar bgc-blue-500 z-depth1" ng-show="$ctrl.checkedItems.length > 0">
+    <div class="container">
+        <div class="toolbar has-divider+has-divider--dark">
+            <div class="toolbar__left">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" ng-click="$ctrl.toggleAll(false)">
+                    <i class="mdi mdi-close"></i>
+                </lx-button>
+            </div>
+            <div class="toolbar__label pl">
+                <span class="tc-white">{{$ctrl.checkedItems.length}} selected</span>
+            </div>
+            <div class="toolbar__right">
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" ng-click="$ctrl.removeItems()">
+                    <i class="mdi mdi-delete"></i>
+                </lx-button>
+                <lx-button lx-size="l" lx-color="white" lx-type="icon" ng-click="$ctrl.markDone()">
+                    <i class="mdi mdi-check"></i>
+                </lx-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container wallet-container">
+    <div class="card wallet">        
+        <div class="body">
+            <div class="toolbar has-divider has-divider--dark ph">
+                <div class="toolbar__label ml+">
+                    <span class="fs-subhead">Today 31/5/2017</span>
+                    <span class="float-right mr+ total-money">{{$ctrl.totalMoney | currency}}</span>
+                </div>
+                <div class="toolbar__right">
+                    <lx-switch lx-color="blue" ng-model="$ctrl.settings.showDone" ng-change="$ctrl.toggleShowDone()"></lx-switch>                    
+                </div>
+            </div>
+            
+            <div class="items">
+                <item ng-repeat="i in $ctrl.items" data="i" toggle-item="$ctrl.toggleItem()" un-done="$ctrl.unDone(i)" ng-hide="!i.active" />
+            </div>
+        </div>
+    </div>
+</div>

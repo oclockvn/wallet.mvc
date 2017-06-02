@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using web.MapperExtensions;
 using web.ViewModels;
 
 namespace web.Controllers
@@ -15,12 +16,6 @@ namespace web.Controllers
         public WalletController(IMediator mediator)
         {
             this.mediator = mediator;
-        }
-                   
-        [Route("")]
-        public ActionResult Index()
-        {
-            return View();
         }
 
         [Route("items")]
@@ -42,7 +37,7 @@ namespace web.Controllers
             if (tuple.Item1 == null || tuple.Item1.Id == 0)
                 return Json(new { code = 1, msg = tuple.Item2 }, JsonRequestBehavior.DenyGet);
 
-            return Json(new { code = 1, data = tuple.Item1 }, JsonRequestBehavior.DenyGet);
+            return Json(new { code = 1, data = tuple.Item1.ToItemIndex() }, JsonRequestBehavior.DenyGet);
         }
     }
 }

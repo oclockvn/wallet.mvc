@@ -19,13 +19,13 @@ namespace web.Controllers
         }
 
         [Route("items")]
-        public ActionResult WalletItems()
+        public async Task<ActionResult> WalletItems()
         {
-            var items = mediator.Send(new WalletIndexViewModel { Time = DateTime.Now, UserId = User.Identity.GetUserId<int>() });
+            var items = await mediator.Send(new WalletIndexViewModel { Time = DateTime.Now, UserId = User.Identity.GetUserId<int>() });
             return Json(items, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("create")]
+        [Route("add")]
         [HttpPost]
         public async Task<ActionResult> CreateItem(ItemCreateViewModel model)
         {

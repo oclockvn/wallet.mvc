@@ -38,7 +38,7 @@
             var text = self.addField || '';
             if (text !== '' && $event.keyCode === 13) {
 
-                if (/^(.{1,255})([+-]\d{1,12})$/g.test(text) === false) {
+                if (/^(.{1,250})([+-]\d{1,12})$/g.test(text) === false) {
                     return;
                 }
 
@@ -54,21 +54,26 @@
 
                 self.settings.showLoading = true;
 
-                var item = {
-                    checked: false,
-                    time: new Date().getTime(),
-                    note: note,
-                    money: money,
-                    done: false,
-                    active: true
-                };
+                //var item = {
+                //    checked: false,
+                //    time: new Date().getTime(),
+                //    note: note,
+                //    money: money,
+                //    done: false,
+                //    active: true
+                //};
 
-                walletService.addItem(item); // .then(success, fail);
-                self.items.unshift(item);
-
-                self.addField = '';
-
-                hideLoading();
+                walletService.addItem({ Money: money, Note: note })
+                    .then(function (response) {
+                        var resp = response.data;
+                        if (resp.code > 0) {
+                            self.items.unshift(resp.data);
+                        }
+                    })
+                .finally(function () {
+                    self.addField = '';
+                    hideLoading();
+                });
             }
         };
 
@@ -133,6 +138,11 @@
         };
 
         function calculateMoney() {
+            if (self.items.length === 0) {
+                self.totalMoney = 0;
+                return;
+            }
+
             var doneItems = _.filter(self.items, function(item) {
                 return item.done;
             });

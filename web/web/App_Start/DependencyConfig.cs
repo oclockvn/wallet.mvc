@@ -6,6 +6,7 @@ using oclockvn.Repository;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using web.Models;
+using web.Handlers;
 
 namespace web
 {
@@ -59,6 +60,11 @@ namespace web
                   return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
               })
               .InstancePerLifetimeScope();
+
+            // builder.RegisterAssemblyTypes(typeof(web.MvcApplication).GetTypeInfo().Assembly).AsImplementedInterfaces();
+            builder.RegisterType<ItemCreateHandler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<WalletIndexHandler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<WalletCreateHandler>().AsImplementedInterfaces().InstancePerDependency();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

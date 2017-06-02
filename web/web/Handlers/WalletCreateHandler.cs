@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using oclockvn.Repository;
 using System;
+using System.Threading.Tasks;
 using web.Entities;
 using web.ViewModels;
 
 namespace web.Handlers
 {
-    public class WalletCreateHandler : IRequestHandler<WalletCreateViewModel, bool>
+    public class WalletCreateHandler : IAsyncRequestHandler<WalletCreateViewModel, bool>
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IRepository<Wallet> walletRepo;
@@ -17,7 +18,7 @@ namespace web.Handlers
             walletRepo = unit.Get<Wallet>();
         }
 
-        public bool Handle(WalletCreateViewModel message)
+        public async Task<bool> Handle(WalletCreateViewModel message)
         {
             var wallet = new Wallet
             {

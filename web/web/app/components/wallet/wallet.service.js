@@ -5,7 +5,7 @@
 
         self.getWallet = function() {
             console.log("item loading...");
-            return $http.get(root + "wallet/items");
+            return $http.get(root + "wallet/info");
 
             //var items  = [];
             //for (var i = 0; i < 10; i++) {

@@ -23,12 +23,12 @@ namespace web.Handlers
             var wallet = new Wallet
             {
                 CreatedDate = DateTime.Now,
-                Name = $"{message.Username}'sWallet",
+                Name = message.Username,
                 UserId = message.UserId
             };
 
             walletRepo.Create(wallet);
-            var result = unitOfWork.Commit();
+            var result = await unitOfWork.CommitAsync();
 
             return result.Item1 > 0;
         }

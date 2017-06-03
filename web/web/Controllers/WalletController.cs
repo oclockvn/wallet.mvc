@@ -18,11 +18,13 @@ namespace web.Controllers
             this.mediator = mediator;
         }
 
-        [Route("items")]
+        [Route("info")]
         public async Task<ActionResult> WalletItems()
         {
             var items = await mediator.Send(new WalletIndexViewModel { Time = DateTime.Now, UserId = User.Identity.GetUserId<int>() });
-            return Json(items, JsonRequestBehavior.AllowGet);
+            var today = DateTime.Now.ToString("MM/dd/yyyy");
+
+            return Json(new { today, items }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("add")]

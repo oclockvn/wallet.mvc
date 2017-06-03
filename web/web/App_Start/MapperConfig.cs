@@ -22,7 +22,9 @@ namespace web
                         m.Active = true;
                     });
 
-                config.CreateMap<Item, ItemIndexViewModel>();
+                config.CreateMap<Item, ItemIndexViewModel>()
+                .ForMember(x => x.datetime, op => op.MapFrom(x => x.Time))
+                .AfterMap((m, vm) => vm.time = vm.datetime.ToString("MM/dd"));
             });
 
             Factory = option.CreateMapper();

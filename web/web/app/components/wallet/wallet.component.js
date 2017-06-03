@@ -11,6 +11,7 @@
                 showLoading: true
             };
             self.totalMoney = 0;
+            self.today = "";
 
             // for (var i = 0; i < 10; i++) {
             //     var sign = i % 2 === 0 ? 1 : -1;
@@ -24,9 +25,11 @@
             //         active: true
             //     });
             // } 
+
             walletService.getWallet()
                 .then(function (resp) {
-                    self.items = resp.data;
+                    self.items = resp.data.items;
+                    self.today = resp.data.today;
                     calculateMoney();
                     $timeout(function () {
                         self.settings.showLoading = false;

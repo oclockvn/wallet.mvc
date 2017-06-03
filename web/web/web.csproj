@@ -94,8 +94,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="oclockvn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\oclockvn.repository.1.0.2\lib\net452\oclockvn.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\oclockvn.repository.1.0.3\lib\net452\oclockvn.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -251,6 +250,7 @@
     <Content Include="app\components\wallet\wallet.component.js" />
     <Content Include="app\components\wallet\wallet.service.js" />
     <Content Include="app\components\wallet\wallet.template.html" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.svg" />
     <Content Include="Content\lumx.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -261,6 +261,10 @@
     </Content>
     <Content Include="Content\style.scss" />
     <Content Include="Content\style.css.map" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.woff2" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />

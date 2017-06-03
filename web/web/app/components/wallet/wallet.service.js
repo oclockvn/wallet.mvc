@@ -15,16 +15,16 @@
             return $http.post(root + "wallet/item/add", angular.toJson(item));
         };
 
+        self.markDone = function (doneItems) {
+            // $http.post(root + "done", angular.toJson(doneItems));
+        };
+
+        self.removeItem = function (itemId) {
+            return $http.post(root + "wallet/item/remove", { itemId: itemId });
+        }
+
         return self;
     };
-
-    self.markDone = function(doneItems) {
-        // $http.post(root + "done", angular.toJson(doneItems));
-    };
-
-    self.removeItem = function (itemId) {
-        return $http.post(root + "wallet/item/remove", { itemId: itemId });
-    }
 
     angular.module("app")
         .factory("walletService", ["$http", walletService]);

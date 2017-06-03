@@ -42,7 +42,7 @@ namespace web.Controllers
             return Json(new { code = 1, data = tuple.Item1.ToItemIndex() }, JsonRequestBehavior.DenyGet);
         }
 
-        [Route("item/remove")]
+        [Route("item/remove/{itemId}")]
         public async Task<ActionResult> RemoveItem(int itemId)
         {
             var success = await mediator.Send(new ItemDeleteViewModel { Id = itemId });

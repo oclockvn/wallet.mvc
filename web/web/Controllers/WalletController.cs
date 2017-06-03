@@ -27,7 +27,7 @@ namespace web.Controllers
             return Json(new { today, items }, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("add")]
+        [Route("item/add")]
         [HttpPost]
         public async Task<ActionResult> CreateItem(ItemCreateViewModel model)
         {
@@ -40,6 +40,13 @@ namespace web.Controllers
                 return Json(new { code = 1, msg = tuple.Item2 }, JsonRequestBehavior.DenyGet);
 
             return Json(new { code = 1, data = tuple.Item1.ToItemIndex() }, JsonRequestBehavior.DenyGet);
+        }
+
+        [Route("item/remove")]
+        public async Task<ActionResult> RemoveItem(int itemId)
+        {
+            var success = await mediator.Send(new ItemDeleteViewModel { Id = itemId });
+            return Json(success, JsonRequestBehavior.DenyGet);
         }
     }
 }

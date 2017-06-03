@@ -120,7 +120,12 @@
                 });
 
                 if (index >= 0) {
-                    self.items.splice(index, 1);
+                    walletService.removeItem(checkedItem.id)
+                        .then(function (resp) {
+                            if (resp.data) {
+                                self.items.splice(index, 1);
+                            }
+                        });
                 }
             });
 

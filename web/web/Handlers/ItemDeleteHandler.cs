@@ -19,7 +19,7 @@ namespace web.Handlers
 
         public async Task<bool> Handle(ItemDeleteViewModel message)
         {
-            itemRepo.Delete(message.Id);
+            itemRepo.Delete(x => message.Ids.Contains(x.Id));
             var result = await unitOfWork.CommitAsync();
 
             return result.Item1 > 0;

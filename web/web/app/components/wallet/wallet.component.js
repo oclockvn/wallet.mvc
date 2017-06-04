@@ -97,39 +97,67 @@
         };
 
         self.markDone = function() {
-            _.each(self.checkedItems, function(item) {
-                item.done = true;
-                item.checked = false;
+            //_.each(self.checkedItems, function (item) {
+            //    (function (i) {
+            //        walletService.doneItem(i.id)
+            //            .then(function (resp) {
+            //                if (resp.data) {
+            //                    i.done = true;
+            //                    i.checked = false;
+            //                }
+            //            });
+            //    })(item);                
+            //});
+            var ids = _.map(self.checkedItems, function (i) {
+                return i.id;
             });
 
-            self.checkedItems.length = 0;
-            self.toggleShowDone();
+            walletService.doneItem(ids)
+                .then(function (resp) {
+                    if (resp.data) {
+                        i.done = true;
+                        i.checked = false;
 
-            calculateMoney();
-        };
+                        self.checkedItems.length = 0;
+                        self.toggleShowDone();
 
-        self.unDone = function(item) {
-            item.done = false;
-            calculateMoney();
-        };
-
-        self.removeItems = function() {
-            _.each(self.checkedItems, function(checkedItem) {
-                var index = _.findIndex(self.items, function(i) {
-                    return i.id === checkedItem.id;
+                        calculateMoney();
+                    }
                 });
+        };
 
-                if (index >= 0) {
-                    walletService.removeItem(checkedItem.id)
-                        .then(function (resp) {
-                            if (resp.data) {
+        self.unDone = function (item) {
+            walletService.undoneItem(item.id)
+                .then(function (resp) {
+                    if (resp.data) {
+                        item.done = false;
+                        calculateMoney();
+                    }
+                });
+        };
+
+        self.removeItems = function () {
+
+            var ids = _.map(self.checkedItems, function (i) {
+                return i.id;
+            });
+
+            walletService.removeItem(ids)
+                .then(function (resp) {
+                    if (resp.data) {
+                        _.each(ids, function (id) {
+                            var index = _.findIndex(self.items, function (i) {
+                                return i.id == id;
+                            });
+
+                            if (index >= 0) {
                                 self.items.splice(index, 1);
                             }
                         });
-                }
-            });
 
-            self.checkedItems.length = 0;
+                        self.checkedItems.length = 0;
+                    }
+                });            
         };
 
         self.toggleShowDone = function() {            

@@ -66,6 +66,8 @@ namespace web
             builder.RegisterType<WalletIndexHandler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<WalletCreateHandler>().AsImplementedInterfaces().InstancePerDependency();
             builder.RegisterType<ItemDeleteHandler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<ItemDoneHandler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<ItemUndoneHandler>().AsImplementedInterfaces().InstancePerDependency();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

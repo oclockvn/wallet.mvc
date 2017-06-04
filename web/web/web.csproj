@@ -230,6 +230,8 @@
     </Compile>
     <Compile Include="Handlers\ItemCreateHandler.cs" />
     <Compile Include="Handlers\ItemDeleteHandler.cs" />
+    <Compile Include="Handlers\ItemDoneHandler.cs" />
+    <Compile Include="Handlers\ItemUndoneHandler.cs" />
     <Compile Include="Handlers\WalletCreateHandler.cs" />
     <Compile Include="Handlers\WalletIndexHandler.cs" />
     <Compile Include="MapperExtensions\ItemMapper.cs" />
@@ -241,7 +243,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ItemCreateViewModel.cs" />
     <Compile Include="ViewModels\ItemDeleteViewModel.cs" />
+    <Compile Include="ViewModels\ItemDoneViewModel.cs" />
     <Compile Include="ViewModels\ItemIndexViewModel.cs" />
+    <Compile Include="ViewModels\ItemUndoneViewModel.cs" />
     <Compile Include="ViewModels\WalletCreateViewModel.cs" />
     <Compile Include="ViewModels\WalletIndexViewModel.cs" />
   </ItemGroup>

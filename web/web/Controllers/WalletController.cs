@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using web.MapperExtensions;
@@ -42,10 +43,24 @@ namespace web.Controllers
             return Json(new { code = 1, data = tuple.Item1.ToItemIndex() }, JsonRequestBehavior.DenyGet);
         }
 
-        [Route("item/remove/{itemId}")]
-        public async Task<ActionResult> RemoveItem(int itemId)
+        [Route("item/remove")]
+        public async Task<ActionResult> RemoveItem(List<int> itemIds)
         {
-            var success = await mediator.Send(new ItemDeleteViewModel { Id = itemId });
+            var success = await mediator.Send(new ItemDeleteViewModel { Ids = itemIds });
+            return Json(success, JsonRequestBehavior.DenyGet);
+        }
+
+        [Route("item/done")]
+        public async Task<ActionResult> DoneItem(List<int> itemIds)
+        {
+            var success = await mediator.Send(new ItemDoneViewModel { Ids = itemIds });
+            return Json(success, JsonRequestBehavior.DenyGet);
+        }
+
+        [Route("item/undone")]
+        public async Task<ActionResult> UndoneItem(int itemId)
+        {
+            var success = await mediator.Send(new ItemUndoneViewModel { Id = itemId });
             return Json(success, JsonRequestBehavior.DenyGet);
         }
     }

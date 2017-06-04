@@ -25,12 +25,17 @@ namespace web.Handlers
         public List<ItemIndexViewModel> Handle(WalletIndexViewModel message)
         {
             var userId = message.UserId;
-            var wallet = walletRepo.Get(x => x.UserId == userId && x.Items.Any(i => DbFunctions.DiffMonths(DateTime.Now, i.Time) == 0), x => x.Items);
+            // var wallet = walletRepo.Get(x => x.UserId == userId && x.Items.Any(i => DbFunctions.DiffMonths(DateTime.Now, i.Time) == 0), x => x.Items);
+            var items = (from i in itemRepo.All.Where(x => DbFunctions.DiffMonths(DateTime.Now, x.Time) == 0)
+                        join w in walletRepo.All.Where(x => x.UserId == x.UserId) on i.WalletId equals w.Id
+                        orderby i.Time descending
+                        select i).ToList();
 
-            if (wallet == null)
+
+            if (items == null)
                 return new List<ItemIndexViewModel>();
 
-            return MapperConfig.Factory.Map<List<Item>, List<ItemIndexViewModel>>(wallet.Items.ToList());
+            return MapperConfig.Factory.Map<List<Item>, List<ItemIndexViewModel>>(items);
         }
     }
 }
